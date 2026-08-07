@@ -1,0 +1,25 @@
+string crop = "Tomato";
+int days = 0;
+float humidity = 75.5;
+
+plant crop;
+
+while(days < 5){
+
+    water crop;
+
+    days = days + 1;
+
+}
+
+if(days == 5){
+
+    harvest crop;
+
+}else{
+
+    fertilize crop;
+
+}
+
+wait days;
