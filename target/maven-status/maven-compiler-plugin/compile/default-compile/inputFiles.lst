@@ -1,0 +1,12 @@
+E:\UEPB\FarmLang\FarmLang\src\main\java\com\farmlang\App.java
+E:\UEPB\FarmLang\FarmLang\src\main\java\com\farmlang\interpreter\InterpreterVisitor.java
+E:\UEPB\FarmLang\FarmLang\src\main\java\com\farmlang\semantic\SemanticVisitor.java
+E:\UEPB\FarmLang\FarmLang\src\main\java\com\farmlang\semantic\symbol.java
+E:\UEPB\FarmLang\FarmLang\src\main\java\com\farmlang\semantic\SymbolTable.java
+E:\UEPB\FarmLang\FarmLang\src\main\java\com\farmlang\visitor\ASTBuilder.java
+E:\UEPB\FarmLang\FarmLang\target\generated-sources\antlr4\FarmLangBaseListener.java
+E:\UEPB\FarmLang\FarmLang\target\generated-sources\antlr4\FarmLangBaseVisitor.java
+E:\UEPB\FarmLang\FarmLang\target\generated-sources\antlr4\FarmLangLexer.java
+E:\UEPB\FarmLang\FarmLang\target\generated-sources\antlr4\FarmLangListener.java
+E:\UEPB\FarmLang\FarmLang\target\generated-sources\antlr4\FarmLangParser.java
+E:\UEPB\FarmLang\FarmLang\target\generated-sources\antlr4\FarmLangVisitor.java
