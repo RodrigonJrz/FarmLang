@@ -10,4 +10,4 @@ FarmLang é uma DSL (Domain Specific Language) voltada para simulação de ativi
 
 ## Requisitos
 
-- Python 3.12+
+- Java
