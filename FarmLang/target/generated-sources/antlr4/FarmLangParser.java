@@ -16,7 +16,7 @@ public class FarmLangParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, ID=3, WS=4;
+		T__0=1, T__1=2, STRING=3, WS=4;
 	public static final int
 		RULE_program = 0, RULE_statement = 1;
 	private static String[] makeRuleNames() {
@@ -34,7 +34,7 @@ public class FarmLangParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, "ID", "WS"
+			null, null, null, "STRING", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -154,7 +154,7 @@ public class FarmLangParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class StatementContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(FarmLangParser.ID, 0); }
+		public TerminalNode STRING() { return getToken(FarmLangParser.STRING, 0); }
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -183,7 +183,7 @@ public class FarmLangParser extends Parser {
 			setState(12);
 			match(T__0);
 			setState(13);
-			match(ID);
+			match(STRING);
 			setState(14);
 			match(T__1);
 			}

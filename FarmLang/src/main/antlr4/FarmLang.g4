@@ -1,20 +1,16 @@
 grammar FarmLang;
 
-
 program
     : statement* EOF
     ;
 
-
 statement
-    : 'plant' ID ';'
+    : 'plant' STRING ';'
     ;
 
-
-ID
-    : [a-zA-Z]+
+STRING
+    : '"' .*? '"'
     ;
-
 
 WS
     : [ \t\r\n]+ -> skip

@@ -1,5 +1,4 @@
-package src.main.java.com.farmlang;
-
+package com.farmlang;
 /**
  * Hello world!
  *
