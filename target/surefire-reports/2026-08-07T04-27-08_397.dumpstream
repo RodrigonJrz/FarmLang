@@ -1,5 +1,0 @@
-# Created at 2026-08-07T04:27:12.332
-Boot Manifest-JAR contains absolute paths in classpath 'E:\UEPB\FarmLang\FarmLang\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

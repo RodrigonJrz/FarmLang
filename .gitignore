@@ -1,0 +1,12 @@
+# Maven
+target/
+
+# IDE
+.vscode/
+.idea/
+
+# Java
+*.class
+
+# Generated ANTLR files
+generated/
