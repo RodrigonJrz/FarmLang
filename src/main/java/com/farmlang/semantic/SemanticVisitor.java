@@ -77,53 +77,25 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
 
     @Override
     public Object visitPlantStatement(PlantStatementContext ctx) {
-        int    line  = ctx.start.getLine();
-        Object value = visit(ctx.value());
-
-        if (!(value instanceof String)) {
-            semanticError(line,
-                "'plant' espera um valor do tipo string, recebeu "
-                + typeName(value) + ".");
-        }
+        checkStringCommand("plant", ctx.value(), ctx.start.getLine());
         return null;
     }
 
     @Override
     public Object visitWaterStatement(WaterStatementContext ctx) {
-        int    line  = ctx.start.getLine();
-        Object value = visit(ctx.value());
-
-        if (!(value instanceof String)) {
-            semanticError(line,
-                "'water' espera um valor do tipo string, recebeu "
-                + typeName(value) + ".");
-        }
+        checkStringCommand("water", ctx.value(), ctx.start.getLine());
         return null;
     }
 
     @Override
     public Object visitFertilizeStatement(FertilizeStatementContext ctx) {
-        int    line  = ctx.start.getLine();
-        Object value = visit(ctx.value());
-
-        if (!(value instanceof String)) {
-            semanticError(line,
-                "'fertilize' espera um valor do tipo string, recebeu "
-                + typeName(value) + ".");
-        }
+        checkStringCommand("fertilize", ctx.value(), ctx.start.getLine());
         return null;
     }
 
     @Override
     public Object visitHarvestStatement(HarvestStatementContext ctx) {
-        int    line  = ctx.start.getLine();
-        Object value = visit(ctx.value());
-
-        if (!(value instanceof String)) {
-            semanticError(line,
-                "'harvest' espera um valor do tipo string, recebeu "
-                + typeName(value) + ".");
-        }
+        checkStringCommand("harvest", ctx.value(), ctx.start.getLine());
         return null;
     }
 
@@ -205,8 +177,11 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
             checkNumeric(result, op, line);
             checkNumeric(right,  op, line);
 
-            result = (result instanceof Double || right instanceof Double)
-                ? 0.0 : 0;
+            if (result instanceof Double || right instanceof Double) {
+                result = 0.0;
+            } else {
+                result = 0;
+            }   
         }
 
         return result;
@@ -224,8 +199,11 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
             checkNumeric(result, op, line);
             checkNumeric(right,  op, line);
 
-            result = (result instanceof Double || right instanceof Double)
-                ? 0.0 : 0;
+            if (result instanceof Double || right instanceof Double) {
+                result = 0.0;
+            } else {
+                result = 0;
+            }
         }
 
         return result;
@@ -268,6 +246,19 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
             return raw.substring(1, raw.length() - 1);
         }
         return null;
+    }
+
+    /* COMANDOS AUXILIARES  */
+
+    private void checkStringCommand(String command, ValueContext valueCtx, int line) {
+        Object value = visit(valueCtx);
+
+        if (!(value instanceof String)) {
+            semanticError(line, 
+                "'" + command + 
+                "' espera um valor do tipo String, mas recebeu " 
+                + typeName(value) + ".");
+        }    
     }
 
     private Object checkAndConvertType(String type, Object value, int line) {
