@@ -1,22 +1,21 @@
 package com.farmlang;
 
+import java.nio.file.Path;
+
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.Trees;
 
 import com.farmlang.interpreter.InterpreterVisitor;
 import com.farmlang.semantic.SemanticVisitor;
-
-import java.nio.file.Path;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Path file = Path.of("examples/valid.farm");
-        boolean showTree = true;
+        Path file = (args.length > 0) ? Path.of(args[0]) : Path.of("examples/valid.farm");
+        boolean showTree = false;
 
         // ── Análise Léxica ──────────────────────────────────────
         CharStream input = CharStreams.fromPath(file);
