@@ -46,7 +46,7 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
     @Override
     public Object visitAssignmentStatement(AssignmentStatementContext ctx) {
         String name = ctx.IDENTIFIER().getText();
-        int    line = ctx.IDENTIFIER().getSymbol().getLine();
+        int line = ctx.IDENTIFIER().getSymbol().getLine();
 
         Symbol symbol = scope.lookup(name, line);
         Object value = visit(ctx.expression());
@@ -101,7 +101,7 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
 
     @Override
     public Object visitWaitStatement(WaitStatementContext ctx) {
-        int    line  = ctx.start.getLine();
+        int line = ctx.start.getLine();
         Object value = visit(ctx.expression());
 
         if (!(value instanceof Number)) {
@@ -124,7 +124,7 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
         if (ctx.REL_OP() == null) return left;
 
         Object right = visit(ctx.additiveExpression(1));
-        int    line  = ctx.REL_OP().getSymbol().getLine();
+        int line = ctx.REL_OP().getSymbol().getLine();
 
         if (left instanceof String || right instanceof String) {
             String op = ctx.REL_OP().getText();
@@ -152,8 +152,8 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
 
         for (int i = 1; i < ctx.multiplicativeExpression().size(); i++) {
             Object right = visit(ctx.multiplicativeExpression(i));
-            String op    = ctx.getChild(2 * i - 1).getText(); // '+' ou '-'
-            int    line  = ctx.start.getLine();
+            String op = ctx.getChild(2 * i - 1).getText(); // '+' ou '-'
+            int line = ctx.start.getLine();
 
             if (result instanceof String || right instanceof String) {
                 if (!op.equals("+")) {
@@ -175,7 +175,7 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
             }
 
             checkNumeric(result, op, line);
-            checkNumeric(right,  op, line);
+            checkNumeric(right, op, line);
 
             if (result instanceof Double || right instanceof Double) {
                 result = 0.0;
@@ -193,11 +193,11 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
 
         for (int i = 1; i < ctx.primaryExpression().size(); i++) {
             Object right = visit(ctx.primaryExpression(i));
-            String op    = ctx.getChild(2 * i - 1).getText(); // '*' ou '/'
-            int    line  = ctx.start.getLine();
+            String op = ctx.getChild(2 * i - 1).getText(); // '*' ou '/'
+            int line = ctx.start.getLine();
 
             checkNumeric(result, op, line);
-            checkNumeric(right,  op, line);
+            checkNumeric(right, op, line);
 
             if (result instanceof Double || right instanceof Double) {
                 result = 0.0;
@@ -221,17 +221,17 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
     public Object visitValue(ValueContext ctx) {
         if (ctx.IDENTIFIER() != null) {
             String name = ctx.IDENTIFIER().getText();
-            int    line = ctx.IDENTIFIER().getSymbol().getLine();
+            int line = ctx.IDENTIFIER().getSymbol().getLine();
 
             // Lança erro se não declarada
             Symbol symbol = scope.lookup(name, line);
 
             // Retorna valor simbólico do tipo correto para checagens
             return switch (symbol.getType()) {
-                case "int"    -> 0;
-                case "float"  -> 0.0;
+                case "int" -> 0;
+                case "float" -> 0.0;
                 case "string" -> "";
-                default       -> null;
+                default -> null;
             };
         }
         return visit(ctx.literal());
@@ -239,8 +239,8 @@ public class SemanticVisitor extends FarmLangBaseVisitor<Object> {
 
     @Override
     public Object visitLiteral(LiteralContext ctx) {
-        if (ctx.INT()    != null) return Integer.parseInt(ctx.INT().getText());
-        if (ctx.FLOAT()  != null) return Double.parseDouble(ctx.FLOAT().getText());
+        if (ctx.INT() != null) return Integer.parseInt(ctx.INT().getText());
+        if (ctx.FLOAT() != null) return Double.parseDouble(ctx.FLOAT().getText());
         if (ctx.STRING() != null) {
             String raw = ctx.STRING().getText();
             return raw.substring(1, raw.length() - 1);
